@@ -1,19 +1,22 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('build') {
             steps {
-                echo 'Building..'
+                sh 'mvn --version'
+                sh 'java -version'
             }
         }
-        stage('Test') {
+        stage('package') {
             steps {
-                echo 'Testing..'
+                sh 'pwd'
+                sh 'ls'
+                sh 'mvn clean package -Dmaven.test.skip=true'
             }
         }
-        stage('Deploy') {
+        stage('test') {
             steps {
-                echo 'Deploying....'
+                sh 'echo "change test"'
             }
         }
     }
